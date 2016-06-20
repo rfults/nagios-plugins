@@ -1,0 +1,46 @@
+#!/bin/sh
+ADDRESS=$(echo ${QUERY_STRING} | grep -oE "(^|[?&])address=\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b" | cut -f 2 -d "=" | head -n1)
+HOST=$(echo ${QUERY_STRING} | grep -oE "(^|[?&])host=.+" | cut -f 2 -d "=" | head -n1)
+
+echo Content-type: application/octet-stream
+echo "content-disposition: attachment;filename=$HOST.rdp"
+echo
+
+echo screen mode id:i:1
+echo desktopwidth:i:800
+echo desktopheight:i:600
+echo session bpp:i:16
+echo winposstr:s:0,9,603,284,1891,1335
+echo auto connect:i:0
+echo full address:s:$ADDRESS
+echo compression:i:1
+echo keyboardhook:i:2
+echo audiomode:i:2
+echo redirectdrives:i:0
+echo redirectprinters:i:1
+echo redirectcomports:i:0
+echo redirectsmartcards:i:1
+echo displayconnectionbar:i:1
+echo autoreconnection enabled:i:1
+echo alternate shell:s:
+echo shell working directory:s:
+echo disable wallpaper:i:0
+echo disable full window drag:i:0
+echo disable menu anims:i:0
+echo disable themes:i:0
+echo disable cursor setting:i:0
+echo bitmapcachepersistenable:i:1
+echo redirectclipboard:i:1
+echo redirectposdevices:i:0
+echo authentication level:i:0
+echo prompt for credentials:i:0
+echo negotiate security layer:i:1
+echo remoteapplicationmode:i:0
+echo allow desktop composition:i:0
+echo allow font smoothing:i:1
+echo gatewayhostname:s:
+echo gatewayusagemethod:i:0
+echo gatewaycredentialssource:i:4
+echo gatewayprofileusagemethod:i:0
+echo drivestoredirect:s:
+echo promptcredentialonce:i:1
